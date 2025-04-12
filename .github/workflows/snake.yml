@@ -1,19 +1,24 @@
-name: Generate Snake Animation
+name: Snake Animation Workflow
 
 on:
-  schedule:
-    - cron: "0 0 * * *"
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
-  generate:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
 
-      - name: Generate Snake Animation
-        uses: Platane/snk@master
-        with:
-          github_user_name: JuniorSixx
-          svg_out_path: dist/github-contribution-grid-snake.svg
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run the snake animation
+      run: |
+        echo "Rodando a animação da cobra"
+        # Seu código de execução da animação ou outra tarefa
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }} # Usando o token guardado nos secrets
+
+    
